@@ -411,6 +411,19 @@
     .demo-box { grid-template-columns: 1fr; }
     .demo-arrow { display: none; }
   }
+
+  .matrixImage{
+    height: auto;
+    width: 30rem;
+  }
+    .barChart{
+    height: auto;
+    width: 40rem;
+  }
+   @media (max-width: 700px) {
+    .barChart{width: 20rem;height: auto;}
+    .matrixImage{width: 20rem;height: auto;}
+   }
 </style>
 </head>
 <body>
@@ -532,44 +545,12 @@
     <div class="section-label">Model Evaluation</div>
     <h2>Results &amp; Confusion Matrix</h2>
 
-    <div class="cm-wrap">
-      <div class="cm-table-wrap">
-        <table class="cm">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Predicted: None</th>
-              <th>Predicted: Insomnia</th>
-              <th>Predicted: Sleep Apnea</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Actual: None</th>
-              <td class="cm-correct">42</td>
-              <td class="cm-wrong">1</td>
-              <td class="cm-zero">0</td>
-            </tr>
-            <tr>
-              <th>Actual: Insomnia</th>
-              <td class="cm-wrong">1</td>
-              <td class="cm-correct">13</td>
-              <td class="cm-wrong">2</td>
-            </tr>
-            <tr>
-              <th>Actual: Sleep Apnea</th>
-              <td class="cm-wrong">1</td>
-              <td class="cm-wrong">4</td>
-              <td class="cm-correct">11</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <img class="matrixImage" src="confusionmatrix.png">
 
       <div class="cm-notes">
         <div class="accuracy-pill">89.3%</div>
-        <p>The model correctly classified most healthy patients, with just 1 false positive.</p>
-        <p>The main source of error is <strong>confusion between Insomnia and Sleep Apnea</strong> (6 misclassifications) which makes sense since both disorders affect sleep quality and duration in overlapping ways.</p>
+        <p>The model correctly classified most healthy patients, with just 3 false positives.</p>
+        <p>The main source of error is <strong>confusion between Insomnia and Sleep Apnea</strong> (4 misclassifications) which makes sense since both disorders affect sleep quality and duration in overlapping ways.</p>
       </div>
     </div>
   </section>
@@ -582,58 +563,7 @@
     <h2>What Drives the Prediction?</h2>
     <p>One of the most valuable outputs of a Random Forest is the ability to rank features by how much they contribute to decisions across all 50 trees. Higher importance = more splits were based on that feature.</p>
 
-    <div class="importance-chart">
-      <div class="imp-row">
-        <span class="imp-label">BMI Category</span>
-        <div class="imp-track"><div class="imp-fill" style="width:100%;"></div></div>
-        <span class="imp-val">0.259</span>
-      </div>
-      <div class="imp-row">
-        <span class="imp-label">Occupation</span>
-        <div class="imp-track"><div class="imp-fill" style="width:65%;"></div></div>
-        <span class="imp-val">0.170</span>
-      </div>
-      <div class="imp-row">
-        <span class="imp-label">Age</span>
-        <div class="imp-track"><div class="imp-fill" style="width:58%;"></div></div>
-        <span class="imp-val">0.149</span>
-      </div>
-      <div class="imp-row">
-        <span class="imp-label">Sleep Duration</span>
-        <div class="imp-track"><div class="imp-fill" style="width:47%;"></div></div>
-        <span class="imp-val">0.123</span>
-      </div>
-      <div class="imp-row">
-        <span class="imp-label">Daily Steps</span>
-        <div class="imp-track"><div class="imp-fill" style="width:36%;"></div></div>
-        <span class="imp-val">0.093</span>
-      </div>
-      <div class="imp-row">
-        <span class="imp-label">Physical Activity</span>
-        <div class="imp-track"><div class="imp-fill" style="width:32%;"></div></div>
-        <span class="imp-val">0.082</span>
-      </div>
-      <div class="imp-row">
-        <span class="imp-label">Heart Rate</span>
-        <div class="imp-track"><div class="imp-fill" style="width:20%;"></div></div>
-        <span class="imp-val">0.052</span>
-      </div>
-      <div class="imp-row">
-        <span class="imp-label">Stress Level</span>
-        <div class="imp-track"><div class="imp-fill" style="width:16%;"></div></div>
-        <span class="imp-val">0.041</span>
-      </div>
-      <div class="imp-row">
-        <span class="imp-label">Quality of Sleep</span>
-        <div class="imp-track"><div class="imp-fill" style="width:10%;"></div></div>
-        <span class="imp-val">0.027</span>
-      </div>
-      <div class="imp-row">
-        <span class="imp-label">Gender</span>
-        <div class="imp-track"><div class="imp-fill" style="width:2%; background: #aab;"></div></div>
-        <span class="imp-val">0.004</span>
-      </div>
-    </div>
+    <img src="barChart.png" class="barChart">
 
     <p style="margin-top:20px; font-size:13px; color: var(--muted);">BMI Category is the single strongest predictor by a wide margin (0.259), followed by Occupation and Age. Notably, Occupation ranks second — suggesting profession-linked lifestyle patterns play a significant role. Gender has virtually no predictive value (0.004).</p>
   </section>
@@ -668,7 +598,7 @@
         <div class="result-sub">Model prediction</div>
       </div>
     </div>
-
+    <img src="insomnia.png" class= " barChart">
     <p style="margin-top:16px; font-size:13px; color:var(--muted);">High stress (7/10), poor sleep quality (5/10), short duration (6.5 hrs), and overweight BMI all point toward insomnia.</p>
   </section>
 
